@@ -7,7 +7,8 @@ import InputContext from "./inputContext";
 const Carousel = (props: any) => {
   const [input, setInput] = useContext(InputContext);
   const type: TYPE = input.type;
-  const { options } = props;
+  let options: Array<{ name: string; url: string }>;
+  options = props.options;
   let pattern: number;
   if (type === TYPE.RECURSION) {
     pattern = input.inputDetail.recursion.pattern;
@@ -32,6 +33,7 @@ const Carousel = (props: any) => {
         }
       });
     }
+  };
   let isDragging = false;
   let containerRef: RefObject<HTMLDivElement> = React.createRef();
   let imgRefs: Array<RefObject<HTMLImageElement>> = [];
@@ -282,7 +284,7 @@ to   { transform: translateX(${-pattern * 110 + 110}px) ; }
         }}
         ref={containerRef}
       >
-        {options.map((item, index) => (
+        {options.map((item, index: number) => (
           <img
             draggable={false}
             alt={item.name}
