@@ -7,6 +7,7 @@ import InputContext from "./inputContext";
 const Carousel = (props: any) => {
   const [input, setInput] = useContext(InputContext);
   const type: TYPE = input.type;
+  const { options } = props;
   let pattern: number;
   if (type === TYPE.RECURSION) {
     pattern = input.inputDetail.recursion.pattern;
@@ -31,22 +32,6 @@ const Carousel = (props: any) => {
         }
       });
     }
-  };
-  let options;
-  if (type === "递归") {
-    options = [
-      { name: "recursion1", url: "./recursion1.png" },
-      { name: "recursion2", url: "./recursion2.png" },
-      { name: "recursion3", url: "./recursion3.png" }
-    ];
-  } else if (type === "瓷砖") {
-    options = [
-      { name: "tile1", url: "./tile1.png" },
-      { name: "tile2", url: "./tile2.png" },
-      { name: "tile3", url: "./tile3.png" },
-      { name: "tile4", url: "./tile4.png" }
-    ];
-  }
   let isDragging = false;
   let containerRef: RefObject<HTMLDivElement> = React.createRef();
   let imgRefs: Array<RefObject<HTMLImageElement>> = [];
